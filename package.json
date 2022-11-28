@@ -15,8 +15,11 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@mdx-js/mdx": "^2.1.5",
+    "@mdx-js/react": "^2.1.5",
     "gatsby": "^5.0.0",
     "gatsby-plugin-image": "^3.1.0",
+    "gatsby-plugin-mdx": "^5.2.0",
     "gatsby-plugin-sharp": "^5.1.0",
     "gatsby-source-filesystem": "^5.1.0",
     "gatsby-transformer-sharp": "^5.1.0",
