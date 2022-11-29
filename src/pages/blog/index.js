@@ -1,7 +1,7 @@
 import * as React from 'react'
-import Layout from '../components/layout'
-import Seo from '../components/seo'
-import { graphql } from 'gatsby'
+import Layout from '../../components/layout'
+import Seo from '../../components/seo'
+import { Link, graphql } from 'gatsby'
 
 const BlogPage = ( {data} ) => {
   // console.log(data)
@@ -10,9 +10,12 @@ const BlogPage = ( {data} ) => {
         {/* we want to map on the array */}
         {data.allMdx.nodes.map(node => {
           return <article key={node.id}>
-            <h2>{node.frontmatter.title}</h2>
-            <p>{node.frontmatter.date}</p>
-            <p>{node.excerpt}</p>
+            <h2>
+              <Link to={`/blog/${node.frontmatter.slug}`}>
+                {node.frontmatter.title}
+              </Link>
+            </h2>
+            <p>Posted: {node.frontmatter.date}</p>
           </article>
         })}
     </Layout>
@@ -21,14 +24,14 @@ const BlogPage = ( {data} ) => {
 
 export const query = graphql`
   query {
-    allMdx {
+    allMdx(sort: {frontmatter: {date: DESC}}) {
       nodes {
         frontmatter {
           title
           date(formatString: "dddd, MMMM Do YYYY")
+          slug
         }
         id
-        excerpt
       }
     }
   }
